@@ -1,7 +1,19 @@
 # NLSH_ND
 Reproducibility repository for the manuscript "A hyperbolic nonlinear Schrödinger system in multiple spatial dimensions: structure, convergence, and numerical discretization" by Carlos Muñoz-Moncayo, Abhijit Biswas, David I. Ketcheson, and Manvendra Pratap Rajvanshi
 
+### Requirements
+The code in this repository requires Python 3.10.14 or higher and the following packages:
+- numpy
+- matplotlib
+Moreover, to run the finite volume solver, Clawpack is required. Please refer to the [Clawpack installation guide](https://www.clawpack.org/installing_pip.html#install-quick-all).
+Once Clawpack is installed, please point the `CLAW` environment variable to the Clawpack installation directory and then run
+```bash
+source setenv.sh
+```
 
+
+
+### Reproducing the results in the paper
 To reproduce the numerical results in the paper, please refer to the README files in the subdirectories of this repository. 
 The code is organized into the following subdirectories:
 - `modulational_instability/`: Section 6.1
