@@ -4,12 +4,12 @@ Compiling the source code with `f2py` is necessary. For this, run the following 
 ```bash
 bash compile_f2py.sh
 ```
-To run the convergence tests for the FV solver for the NLSH in 2D, run the following command from this directory:
+To run the convergence tests for the NLSH FV solver in 2D, run the following command from this directory:
 ```bash
 python convergence_FV_solver_test.py #Figure 6
 python convergence_sharpclaw_solver_test.py #Figure 12 (Appendix B)
 ```
-To preview an example simulation of the FV solver for the NLSH in 2D, run the following command from this directory:
+To preview an example simulation of the NLSH FV solver in 2D, run the following command from this directory:
 ```bash
 python plane_wave_rectangle_nlsh.py iplot=1
 ```
