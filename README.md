@@ -5,6 +5,7 @@ Reproducibility repository for the manuscript "A hyperbolic nonlinear Schröding
 The code in this repository requires Python 3.10.14 or higher and the following packages:
 - numpy
 - matplotlib
+
 Moreover, to run the finite volume solver, Clawpack is required. Please refer to the [Clawpack installation guide](https://www.clawpack.org/installing_pip.html#install-quick-all).
 Once Clawpack is installed, please point the `CLAW` environment variable to the Clawpack installation directory and then run
 ```bash
