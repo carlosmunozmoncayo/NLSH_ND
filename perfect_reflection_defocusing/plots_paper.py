@@ -40,7 +40,6 @@ def plot_amplitude_frames(frames, vmin=0.7, vmax=1.0, cmap='jet',
 
     for ax, frame in zip(axs, frames):
         framesoln = Solution()
-        # framesoln.read(path="_output_rectangle_1600x320_5_trapz",frame=frame, read_aux=True)
         framesoln.read(path="_output",frame=frame, read_aux=True)
 
         z0 = gridtools.grid_output_2d(framesoln, 0, XOUT, YOUT)
