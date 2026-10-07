@@ -11,6 +11,7 @@ Once Clawpack is installed, please point the `CLAW` environment variable to the 
 ```bash
 source setenv.sh
 ```
+You might want to run the simulations in parallel. You'll need OpenMP for that. Please refer to [This guide](https://www.clawpack.org/openmp.html) for more information.
 
 
 
@@ -20,3 +21,6 @@ The code is organized into the following subdirectories:
 - `modulational_instability/`: Section 6.1
 - `standing_waves/`: Section 6.3
 - `pyclaw/`: Section 6.4
+- `perfect_reflection_defocusing/`: Section 6.5
+- `diagonal_reflection_defocusing/`: Section 6.5
+
