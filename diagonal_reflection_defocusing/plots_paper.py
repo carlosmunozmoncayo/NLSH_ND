@@ -85,4 +85,4 @@ nr = 2.5
 nd = (5*nr-2*hs)/7
 # fig, axs = plot_amplitude_frames([6, 8, 11, 13,15,18,22][::-1],equal_aspect=True, panel_height=1.8)
 fig, axs = plot_amplitude_frames([6, 8, 11, 13, 15, 18,22][::-1],equal_aspect=False, panel_height=nd,hspace=hs)#1.8)
-fig.savefig('../paper/figures/amplitude_diagonal_wall_defocusing.png', dpi=300, bbox_inches='tight')
+fig.savefig('amplitude_diagonal_wall_defocusing.png', dpi=300, bbox_inches='tight')
