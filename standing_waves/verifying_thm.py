@@ -83,7 +83,7 @@ FLOOR_LINES = False     # draw the measured floors on the figure
 OPEN_BAD_MARKERS = False
 
 CACHE = os.path.join(thisdir, "cache_ground_state_evolution")
-OUTPDF = os.path.join(thisdir, "../paper/figures/error_standing_wave.pdf")#"../paper/figures/error_2d_standing_wave.pdf")
+OUTPDF = os.path.join(thisdir, "error_standing_wave.pdf")
 
 # Fontsizes (matching generate_focusing_MI_plots.py / the ground-state figure)
 fs1 = 16
