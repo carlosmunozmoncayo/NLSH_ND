@@ -24,4 +24,5 @@ The code is organized into the following subdirectories:
 - `pyclaw/`: Section 6.2.1
 - `perfect_reflection_defocusing/`: Section 6.2.2
 - `diagonal_reflection_defocusing/`: Section 6.2.2
+- `transverse_instabilities_focusing/`: Section 6.2.3
 
