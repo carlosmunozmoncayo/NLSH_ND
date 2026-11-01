@@ -163,7 +163,7 @@ if __name__ == "__main__":
 
     fig.subplots_adjust(top=0.85)   # room for the legend strip
     #Save as pdf
-    plt.savefig('../paper/figures/focusing_MI_threshold.pdf', bbox_inches='tight')
+    plt.savefig('focusing_MI_threshold.pdf', bbox_inches='tight')
 
 
     #Second plot: contour plot of the solution for each tau

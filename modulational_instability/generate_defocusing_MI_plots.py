@@ -4,6 +4,42 @@ generate_defocusing_MI_plots.py
 
 Numerical verification of the *new* high-wavenumber instability band of the
 NLSH system, i.e. the mechanism  D < 0  of Section \ref{sec:MI theoretical}.
+
+This is the defocusing counterpart of `generate_focusing_MI_plots.py`.  It is
+the interesting case because for kappa < 0 the classical Benjamin-Feir band
+(k^2 < 2ab) is empty for every tau, so any growth observed here is produced
+purely by the hyperbolic relaxation and has no NLS analogue.
+
+Notation follows the paper:
+
+    a     = 1 - tau kappa sigma^{p-1}                 (relaxation coefficient)
+    b     = (p-1) kappa sigma^{p-1} / 2               (nonlinear coupling)
+    alpha = a + 2 tau b = 1 + (p-2) tau kappa sigma^{p-1}
+    D     = a^4 + (4 tau a^2 + 8 tau^2 a b) k^2 = a (a^3 + 4 tau alpha k^2)
+
+Two thresholds control the experiment:
+
+  (T1) the band exists at all   <=>  alpha < 0
+                                <=>  tau > tau_band = 1/((p-2)|kappa|sigma^{p-1}),
+       which requires p > 2 in the defocusing case;
+
+  (T2) the *seeded* mode k is inside the band  <=>  k^2 > k_c^2 = -a^3/(4 tau alpha),
+       which defines tau_crit(k) > tau_band.  Since k_c -> infinity as
+       tau -> tau_band^+, tau_crit(k) -> tau_band from above as k grows.
+
+With the defaults below (p=3, kappa=-1, sigma=1, k=8):
+    tau_band  = 1.0        tau_crit(8) = 1.0318
+so the tau list straddles both. 
+
+There is NO Fermi-Pasta-Ulam-Tsingou recurrence. Here
+every harmonic of an unstable mode is itself unstable, so the energy
+cascades irreversibly to the grid scale. This makes the instability considerably
+more destructive than the focusing one once it is triggered.
+
+Figures produced
+----------------
+  defocusing_MI_threshold.pdf   ||q0||_inf vs t for several tau + theory curves
+  defocusing_MI_contour.png     space-time contour of |q0| for each tau
 """
 
 import numpy as np
@@ -139,6 +175,7 @@ def eigenmode_perturbation(x, k, kappa, sigma, p, tau, Om, amplitude):
 
 # =====================================================================
 if __name__ == "__main__":
+
     # ---------------- parameters ----------------
     L = 2 * np.pi
     N_points = 2 ** 10
@@ -198,16 +235,14 @@ if __name__ == "__main__":
             q0i = q0i + eps_p * np.cos(k_perturbation * sol.x)
 
         amp0_list.append(np.max(np.abs(q0i)) - sigma)
-        r = sol.run(q0i, q1i, Tfinal, dt, method="ars222", relaxation=True,
+        r = sol.run(q0i, q1i, Tfinal, dt, method="ars443", relaxation=True,
                     n_snapshots=600)
         print(f"    mass drift = {r.mass_drift:.3e}")
         r_list.append(r)
 
     x = sol.x
 
-    # =================================================================
-    # Figure 1: ||q0||_inf vs time, with the predicted growth envelope
-    # =================================================================
+
     fs1, fs2 = 12, 15
     colors = ["#1ADF1A", '#FFC107', '#1E88E5', '#D81B60', '#FE6100']
     lw = 2
@@ -238,40 +273,3 @@ if __name__ == "__main__":
               frameon=False, columnspacing=1.2, handlelength=1.8)
     fig.subplots_adjust(top=0.85)
     plt.savefig('defocusing_MI_threshold.pdf', bbox_inches='tight')
-
-
-    # =================================================================
-    # Figure 2: space-time contours
-    # =================================================================
-    fs1, fs2 = 12, 15
-    x_scaled = sol.x / (2 * np.pi)
-    X, T = np.meshgrid(x_scaled, r.snapshots.t)
-
-    idxs = list(range(len(tau_list)))
-    Qs = [np.abs(r_list[i].snapshots.q0) for i in idxs]
-    cmap = 'RdBu'
-    vmin, vmax = 0.5, 1.5
-    norm = Normalize(vmin=vmin, vmax=vmax)
-
-    fig, axs = plt.subplots(1, len(idxs), figsize=(6, 7), sharey=True,
-                            gridspec_kw={'wspace': 0})
-    for ax, i, Q in zip(axs, idxs, Qs):
-        ax.pcolormesh(X, T, Q, norm=norm, cmap=cmap)
-        ax.set_xlabel(r'$x/(2\pi)$', fontsize=fs2)
-        ax.set_title(r'$\tau$=' + f'{tau_list[i]}' if tau_list[i] > 1.e-12 else 'NLS',
-                     fontsize=fs2)
-        ax.xaxis.set_major_locator(MaxNLocator(nbins=2, prune='both'))
-        ax.xaxis.set_major_formatter(FormatStrFormatter('%.1f'))
-        ax.tick_params(axis='both', which='major', labelsize=fs1)
-    axs[0].set_ylabel('Time', fontsize=fs2)
-
-    fig.subplots_adjust(right=0.85)
-    cbar_ax = fig.add_axes([0.88, 0.15, 0.03, 0.7])
-    cbar = fig.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap),
-                        cax=cbar_ax, label=r'$|q_0|$', extend='both')
-    cbar.set_label(r'$|q_0|$', fontsize=fs2)
-    cbar.ax.tick_params(labelsize=fs1)
-    # plt.savefig('../paper/figures/defocusing_MI_contour.png',
-    #             bbox_inches='tight', dpi=300)
-    plt.savefig('defocusing_MI_contour.png',
-                    bbox_inches='tight', dpi=300)
