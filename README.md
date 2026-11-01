@@ -18,9 +18,10 @@ You might want to run the simulations in parallel. You'll need OpenMP for that. 
 ### Reproducing the results in the paper
 To reproduce the numerical results in the paper, please refer to the README files in the subdirectories of this repository. 
 The code is organized into the following subdirectories:
-- `modulational_instability/`: Section 6.1
-- `standing_waves/`: Section 6.3
-- `pyclaw/`: Section 6.4
-- `perfect_reflection_defocusing/`: Section 6.5
-- `diagonal_reflection_defocusing/`: Section 6.5
+- `modulational_instability/`: Section 6.1.1
+- `well_prepared/`: Section 6.1.2
+- `standing_waves/`: Section 6.1.3
+- `pyclaw/`: Section 6.2.1
+- `perfect_reflection_defocusing/`: Section 6.2.2
+- `diagonal_reflection_defocusing/`: Section 6.2.2
 
