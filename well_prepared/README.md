@@ -1,4 +1,4 @@
-### Modulational Instability of NLSH plane wave solutions
+### Well prepared initial data
 To reproduce the results in Section 6.1.2 of the paper, run the following command in this directory:
 
 ```bash

@@ -167,9 +167,9 @@ def setrun(claw_pkg='amrclaw'):
     clawdata.dt_max = 1.e1
     
     # Desired Courant number if variable dt used 
-    clawdata.cfl_desired = 0.9
+    clawdata.cfl_desired = 0.99
     # max Courant number to allow without retaking step with a smaller dt:
-    clawdata.cfl_max = 0.95
+    clawdata.cfl_max = 1.0
     
     # Maximum number of time steps to allow between output times:
     clawdata.steps_max = 100000
