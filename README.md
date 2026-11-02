@@ -26,3 +26,4 @@ The code is organized into the following subdirectories:
 - [Section 6.2.2](diagonal_reflection_defocusing)
 - [Section 6.2.3](transverse_instabilities_focusing)
 - [Section 6.2.4](radial_DSW)
+- [Section 6.2.5](superfluid_flow_cylinder)
